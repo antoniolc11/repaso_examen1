@@ -15,9 +15,16 @@
 
     require '../vendor/autoload.php';
 
+    if (isset($_SESSION['error'])) { ?>
+        <p><?= $_SESSION['error'] ?></p>
+    <?php } 
+
+    if (isset($_SESSION['exito'])) { ?>
+        <p><?= $_SESSION['exito'] ?></p>
+    <?php } 
+
     $pdo = conectar();
     $sent = $pdo->query("SELECT * FROM alumnos ORDER BY id");
-    //$filas = $sent->fetchAll();
 
     ?>    
 
@@ -50,8 +57,6 @@
                 </tbody>
             </table>
         </div>
-
-
 
     <script src="/js/flowbite/flowbite.js"></script>
 

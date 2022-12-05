@@ -35,25 +35,25 @@ function volver()
     header('Location: /index.php');
 }
 
-function carrito()
+/* function carrito()
 {
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = serialize(new \App\Generico\Carrito());
     }
 
     return $_SESSION['carrito'];
-}
+} */
 
-function carrito_vacio()
+/* function carrito_vacio()
 {
     $carrito = unserialize(carrito());
 
     return $carrito->vacio();
-}
+} */
 
-function volver_admin()
+function volver_editar()
 {
-    header("Location: /admin/");
+    header("Location: /modificar.php");
 }
 
 function redirigir_login()

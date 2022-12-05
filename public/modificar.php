@@ -13,20 +13,27 @@
 <body>
   <?php
   require '../vendor/autoload.php';
-
   $pdo = conectar();
 
   $id = obtener_get('id');
   $nombrem = obtener_get('nombrem');
   $nombre = obtener_post('nombre');
 
-  if ($nombre === $nombrem) {
+  if ($nombre == $nombrem) {
+    unset($_SESSION['error']);
+    $_SESSION['error'] = 'El usuario no se puede modificar si es el mismo.';   
+  }
+
+  if (isset($nombre) && $nombre != '' && $nombre != $nombrem) {
+    unset($_SESSION['error']);
+    \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
+    $_SESSION['exito'] = 'El usuario se ha modificado correctamente.';
     return volver();
   }
 
-  if (isset($nombre) && $nombre != '') {
-    \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
-    return volver();
+
+  if (isset($_SESSION['error'])) {
+    print_r($_SESSION['error']);
   }
   ?>
 
@@ -45,4 +52,4 @@
 
 </body>
 
-</html>
+</html> 

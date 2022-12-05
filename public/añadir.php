@@ -18,8 +18,15 @@
  
 
     if (isset($nombre) && $nombre != '') {
+        unset($_SESSION['error']);
         \App\Tablas\Alumno::insertar($nombre);
+        $_SESSION['exito'] = 'El alumno se a se ha añadido correctamente.';
         return volver();
+    }
+    if (!isset($nombre) && $nombre != '') 
+    {
+      $_SESSION['error'] = 'El alumno no puede ser vacío.';
+      print_r($_SESSION['error']);
     } 
   ?>
 
