@@ -15,6 +15,13 @@ function dinero($s)
     return number_format($s, 2, ',', ' ') . ' €';
 }
 
+function mostrar_fecha($timestamp)
+{
+    $fechaComoEntero = strtotime($timestamp);
+    $anio = date("d-m-Y", $fechaComoEntero);
+    return $anio;
+}
+
 function obtener_get($par)
 {
     return obtener_parametro($par, $_GET);

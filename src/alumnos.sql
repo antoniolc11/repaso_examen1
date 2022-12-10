@@ -4,7 +4,9 @@ DROP TABLE IF EXISTS notas CASCADE;
 
 CREATE TABLE alumnos (
     id bigserial PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL
+    nombre VARCHAR(255) NOT NULL,
+    fecha_nac TIMESTAMP NOT NULL,
+    saldo      numeric(6,2) NOT NULL
 );
 
 CREATE TABLE ccee (
@@ -14,11 +16,11 @@ CREATE TABLE ccee (
 );
 
 CREATE TABLE notas (
-    id bigserial NOT NULL UNIQUE,
+    id bigserial NOT NULL PRIMARY KEY,
     alumno_id BIGINT NOT NULL REFERENCES alumnos (id),
     ccee_id BIGINT NOT NULL REFERENCES ccee (id),
     nota numeric(4,2) NOT NULL,
-    PRIMARY KEY (alumno_id, ccee_id)
+    UNIQUE(alumno_id, ccee_id)
 );
 
 

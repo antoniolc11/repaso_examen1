@@ -7,12 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/output.css" rel="stylesheet">
-  <title>Document</title>
+  <title>Modificar</title>
 </head>
 
 <body>
   <?php
   require '../vendor/autoload.php';
+  require '../src/_alerts.php';
+
   $pdo = conectar();
 
   $id = obtener_get('id');
@@ -20,20 +22,13 @@
   $nombre = obtener_post('nombre');
 
   if ($nombre == $nombrem) {
-    unset($_SESSION['error']);
     $_SESSION['error'] = 'El usuario no se puede modificar si es el mismo.';   
   }
 
   if (isset($nombre) && $nombre != '' && $nombre != $nombrem) {
-    unset($_SESSION['error']);
     \App\Tablas\Alumno::modificar($id, $nombre, $pdo);
     $_SESSION['exito'] = 'El usuario se ha modificado correctamente.';
     return volver();
-  }
-
-
-  if (isset($_SESSION['error'])) {
-    print_r($_SESSION['error']);
   }
   ?>
 
