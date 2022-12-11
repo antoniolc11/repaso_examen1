@@ -18,7 +18,6 @@
 
 
     $pdo = conectar();
-
     $sent = $pdo->query("SELECT * FROM alumnos");
 
 
